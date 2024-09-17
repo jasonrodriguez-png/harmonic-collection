@@ -1,3 +1,124 @@
-body {
-  font-family: sans-serif;
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #000;
 }
+@font-face {
+    font-family: 'FUTURA EXTRA BLACK REGULAR';
+    src: url('typefaces/FUTURA\ EXTRA\ BLACK\ REGULAR.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+body {
+    width: 100%;
+    height: 100vh;
+}
+
+.pos_center {
+    position: absolute;
+    width: 75%;
+    left: 12.5%; 
+    top: 10%;
+}
+
+.content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start; 
+    gap: 20px; 
+}
+
+.text-container {
+    text-align: left; 
+}
+
+.card img {
+    max-width: 100%; 
+    height: auto; 
+}
+
+p {
+    color: white;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-family: 'FUTURA EXTRA BLACK REGULAR';
+    font-size: 85px;
+    line-height: 80px;
+    background-image: linear-gradient(43deg, #9c33ff 0%, #7d33ff 46%, #0b01ab 100%);
+    -webkit-background-clip: text;
+    color: transparent;
+    text-align: left; 
+}
+
+a {
+    color: #9c33ff; 
+    text-decoration: none; 
+    font-size: 18px; 
+}
+.btn {
+    padding: 5px 15px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 9px;
+}
+.btn::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+    left: 0;
+    top: 0;
+    border-radius: 9px;
+}
+/* glow */
+.btn::before {
+    content: "";
+    background: linear-gradient(
+      45deg,#8312A5,#720B98,#561496,#391E94,#1D2791,#0037A5,
+      #1D2791,#391E94,#561496,#720B98
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 600%;
+    z-index: -1;
+    width: calc(100% + 4px);
+    height:  calc(100% + 4px);
+    filter: blur(8px);
+    animation: glowing 20s linear infinite;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+    opacity: 0;
+}
+
+@keyframes glowing {
+    0% {background-position: 0 0;}
+    50% {background-position: 400% 0;}
+    100% {background-position: 0 0;}
+  }
+  
+  /* hover */
+  .btn:hover::before {
+    opacity: 1;
+  }
+  
+  .btn:active:after {
+    background: transparent;
+  }
+  
+  .btn:active {
+    color: #000;
+    font-weight: bold;
+  }
