@@ -15,14 +15,24 @@ p {
 }
 
 h1 {
-    font-family: 'FUTURA EXTRA BLACK REGULAR';
-    font-size: 85px;
-    line-height: 1.2;
-    background-image: linear-gradient(43deg, #9c33ff 0%, #7d33ff 46%, #0b01ab 100%);
-    -webkit-background-clip: text;
-    color: transparent;
-    text-align: center; 
-    margin-bottom: 50px;
+  font-family: 'FUTURA EXTRA BLACK REGULAR';
+  font-size: 85px;
+  line-height: 80px;
+  background: linear-gradient(to right,#8312A5,#720B98,#561496,#391E94,#1D2791,#0037A5,
+  #1D2791,#391E94,#561496,#720B98, #8312A5);
+  background-clip: text;
+  color: transparent;
+  background-size: 200% auto;
+  animation: gradientAnimation 3s linear infinite;
+  text-align: center; 
+}
+@keyframes  gradientAnimation{
+  0%{
+      background-position: 200% 50%;
+  }
+  100%{
+      background-position: 0% 50%;
+  }
 }
 
 a {
@@ -112,10 +122,40 @@ main {
     row-gap: 100px;
     justify-content: center;
 }
-  img {
+
+img{
+    position: relative;
+    height: 370px;
+    width: 240px;
+    filter: saturate(0%);
+    opacity: 50%;
+    transition: 0.7s;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
     width: 300px;
     height: 300px;
     object-fit: cover;
     object-position: center;
-  }
- 
+}
+
+img:hover{
+    filter: saturate(100%);
+    transform: scale(1.3);
+    background: #ff800a;
+    z-index: 2;
+    box-shadow: 2px 2px 2px #000;
+    opacity: 100%;
+}
+
+.button{
+    position: absolute;
+    width: 240px;
+    height: 370px;
+    transition: 0.7s;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+}
+
+.button:hover{
+    background-color: rgba(0, 0, 0, 0.2);
+}
