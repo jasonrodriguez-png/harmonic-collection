@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BADGES</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js" ></script>
+</head>
+<body>
+
+  <!-- Navigation Buttons -->
+  <a href="/" class="btn-container">
+    <button class="btn">Home</button>
+  </a>
+  <a href="/entry-1" class="btn-container">
+    <button class="btn">Headlights</button>
+  </a>
+  <a href="/entry-2" class="btn-container">
+    <button class="btn">Wheels</button>
+  </a>
+  <a href="/entry-3" class="btn-container">
+    <button class="btn">Taillights</button>
+  </a>
+  <a href="/entry-4" class="btn-container">
+    <button class="btn">Doorhandles</button>
+  </a>
+
+  <div class="titles">
+    <h1>BADGES</h1>
+  </div>
+
+  <div id="gallery">
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+  </div>
+
+  <script>
+    const gallery = document.getElementById("gallery");
+
+    window.onmousemove = (e) => {
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+
+      const xDecimal = mouseX / window.innerWidth;
+      const yDecimal = mouseY / window.innerHeight;
+
+      const maxX = gallery.offsetWidth - window.innerWidth;
+      const maxY = gallery.offsetHeight - window.innerHeight;
+
+      const panX = maxX * xDecimal; 
+      const panY = maxY * yDecimal; 
+
+      gallery.animate(
+        [
+          {
+            transform: `translate(${panX}px, ${panY}px)` 
+          }
+        ],
+        {
+          duration: 4000,
+          fill: "forwards",
+          easing: "ease",
+        }
+      );
+    };
+
+    const radius = 300;
+    const blocks = document.querySelectorAll(".block"); 
+    const radius2 = radius * radius;
+    const container = document.querySelector("#gallery"); 
+
+    blocks.forEach((block) => {
+      let b = block.getBoundingClientRect(); 
+      block.cx = b.left + b.width / 2 + window.pageXOffset;
+      block.cy = b.top + b.height / 2 + window.pageYOffset;
+
+      block.tween = gsap.to(block, {
+        scale: 1.5, 
+        ease: "power1.in",
+        paused: true,
+      }).progress(1).progress(0);
+
+      document.addEventListener("mousemove", (e) => {
+        let i = blocks.length;
+        let dx, dy, block;
+
+        while (i--) {
+          block = blocks[i]; 
+          dx = (block.cx - e.pageX) ** 2;
+          dy = (block.cy - e.pageY) ** 2;
+          block.tween.progress(1 - (dx + dy) / radius2);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
