@@ -25,6 +25,8 @@ h1 {
   background-size: 200% auto;
   animation: gradientAnimation 3s linear infinite;
   text-align: center; 
+  margin-bottom: 50px; 
+
 }
 @keyframes  gradientAnimation{
   0%{
